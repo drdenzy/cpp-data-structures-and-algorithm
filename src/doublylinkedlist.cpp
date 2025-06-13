@@ -79,7 +79,8 @@ void DoublyLinkedList::prepend(const int value) {
 }
 
 void DoublyLinkedList::deleteLast() {
-    if (length == 0) return; // empty list
+    if (length == 0)
+        return; // empty list
 
     Node* temp = tail;
     if (length == 1) {
@@ -96,7 +97,8 @@ void DoublyLinkedList::deleteLast() {
 }
 
 void DoublyLinkedList::deleteFirst() {
-    if (length == 0) return; // empty list
+    if (length == 0)
+        return; // empty list
     Node* temp = head;
     if (length == 1) {
         // single node list
@@ -109,4 +111,39 @@ void DoublyLinkedList::deleteFirst() {
     }
     delete temp;
     --length;
+}
+
+Node* DoublyLinkedList::get(const int index) const {
+    // validate index bounds
+    if (index < 0 || index >= length)
+        return nullptr;
+
+    /*
+        * Optimized traversal based on index position:
+        * - If the target index is in the first half of the list, start from the head.
+        * - If it's in the second half, start from the tail.
+        * This reduces traversal time from O(n) to O(n/2) in the average case.
+    */
+    Node* target = head;
+    if (index < length / 2) {
+        for (int i = 0; i < index; ++i) {
+            target = target->next;
+        }
+    } else {
+        target = tail;
+        for (int i = length - 1; i > index; --i) {
+            target = target->prev;
+        }
+    }
+    return target;
+}
+
+bool DoublyLinkedList::set(int index, int newValue) {
+  // the get method will serve as a helper
+    Node* target = get(index);
+    if (target) {
+        target->value = newValue;
+        return true;
+    }
+    return false;
 }

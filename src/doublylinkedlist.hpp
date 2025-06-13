@@ -11,6 +11,8 @@ public:
     void prepend(int value);
     void deleteLast();
     void deleteFirst();
+    Node* get(int index) const;
+    bool set(int index, int newValue);
 
 
     // accessors

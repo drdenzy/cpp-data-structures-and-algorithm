@@ -29,8 +29,21 @@ int main() {
     //     dll->deleteFirst();
     //     dll->display();
     // }
-    while (dll->getLength() != 0) {
-        dll->deleteLast();
-        dll->display();
-    }
+
+    std::cout << "Index 0: " << dll->get(0)->getData() << '\n';
+    std::cout << "Index 1: " << dll->get(1)->getData() << '\n';
+    std::cout << "Index (length of list - 1): " << dll->get(dll->getLength()-1)->getData() << '\n';
+
+    dll->set(0, 111);
+    dll->set(1, 222);
+    dll->set(dll->getLength()-1, 333);
+
+    std::cout << "Index 0: " << dll->get(0)->getData() << '\n';
+    std::cout << "Index 1: " << dll->get(1)->getData() << '\n';
+    std::cout << "Index (length of list - 1): " << dll->get(dll->getLength()-1)->getData() << '\n';
+
+    // while (dll->getLength() != 0) {
+    //     dll->deleteLast();
+    //     dll->display();
+    // }
 }

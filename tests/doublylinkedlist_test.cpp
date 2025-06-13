@@ -175,3 +175,40 @@ TEST_F(EmptyDoublyLinkedListTest, DeleteFirst_FromEmptyDLL) {
     dll->deleteFirst();
     ASSERT_EQ(dll->getLength(), 0);
 }
+
+// ------- Get -------
+TEST_F(EmptyDoublyLinkedListTest, Get_FromEmptyDLL) {
+    ASSERT_EQ(dll->get(0), nullptr);
+}
+
+TEST_F(SingleNodeDoublyLinkedListTest, Get_FromSingleNodeDLL) {
+    ASSERT_EQ(dll->get(0)->getData(), 10);
+}
+
+TEST_F(MultiNodeDoublyLinkedListTest, Get_FromMultiNodeDLL){
+    ASSERT_EQ(dll->get(0)->getData(), 10);
+    ASSERT_EQ(dll->get(1)->getData(), 20);
+    ASSERT_EQ(dll->get(2)->getData(), 30);
+}
+
+// ------- Set -------
+
+TEST_F(EmptyDoublyLinkedListTest, Set_FromEmptyDLL) {
+    ASSERT_EQ(dll->set(-1, 100), false);
+    ASSERT_EQ(dll->set(0, 200), false);
+}
+
+TEST_F(SingleNodeDoublyLinkedListTest, Set_FromSingleNodeDLL) {
+    ASSERT_EQ(dll->set(0, 1000), true);
+    ASSERT_EQ(dll->get(0)->getData(), 1000);
+}
+
+TEST_F(MultiNodeDoublyLinkedListTest, Set_FromMultiNodeDLL) {
+    ASSERT_EQ(dll->set(0, 11), true);
+    ASSERT_EQ(dll->get(0)->getData(), 11);
+    ASSERT_EQ(dll->set(1, 22), true);
+    ASSERT_EQ(dll->get(1)->getData(), 22);
+    ASSERT_EQ(dll->set(2, 33), true);
+    ASSERT_EQ(dll->get(2)->getData(), 33);
+    ASSERT_EQ(dll->set(3, 44), false);
+}
