@@ -37,5 +37,9 @@ tests/build
 cmake-build-debug
 cmake/CodeCoverage.cmake
 rule-of-five.md
+.cache
 .vscode
 .idea
+
+# code coverage
+default.profraw

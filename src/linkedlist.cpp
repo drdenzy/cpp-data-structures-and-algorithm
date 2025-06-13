@@ -2,12 +2,12 @@
 
 void LinkedList::clear()
 {
-    Node* current = head;
+    Node2* current = head;
     // check if the current Node is not a nullptr
     while (current != nullptr)
     {
         // get the next node
-        Node* next = current->getNext();
+        Node2* next = current->getNext();
         // delete the current node
         delete current;
         // make the next node the current one
@@ -21,7 +21,7 @@ void LinkedList::clear()
 LinkedList::LinkedList(int value)
 {
     // create a new Node (first node)
-    head = new Node(value);
+    head = new Node2(value);
     tail = head;
     length = 1;
 }
@@ -45,7 +45,7 @@ void LinkedList::append(const int value)
         * - value: The integer data to store in the newly appended node.
     */
 
-    Node* newNode = new Node(value);
+    Node2* newNode = new Node2(value);
     if (length == 0)
     {
         // LinkedList is empty
@@ -74,7 +74,7 @@ void LinkedList::prepend(const int value)
      * Increments the list length after insertion.
      */
 
-    Node* newNode = new Node(value);
+    Node2* newNode = new Node2(value);
 
     if (length == 0)
     {
@@ -113,7 +113,7 @@ void LinkedList::deleteLast()
 
     if (length == 0) return; // Case 1: list is empty
 
-    Node* temp = head;
+    Node2* temp = head;
 
     if (length == 1)
     {
@@ -124,7 +124,7 @@ void LinkedList::deleteLast()
     else
     {
         // Case 3: two or more nodes
-        Node* prev = nullptr;
+        Node2* prev = nullptr;
         while (temp->getNext())
         {
             prev = temp;
@@ -160,7 +160,7 @@ void LinkedList::deleteFirst()
 
     if (length == 0) return; // Case 1: empty list
 
-    Node* temp = head;
+    Node2* temp = head;
 
     if (length == 1)
     {
@@ -210,8 +210,8 @@ void LinkedList::deleteNode(const int index)
     }
 
     // Deleting a node in the middle
-    Node* prev = get(index - 1);
-    Node* target = prev->getNext();
+    Node2* prev = get(index - 1);
+    Node2* target = prev->getNext();
 
     prev->setNext(target->getNext());
     delete target;
@@ -219,7 +219,7 @@ void LinkedList::deleteNode(const int index)
 }
 
 
-Node* LinkedList::get(const int index) const
+Node2* LinkedList::get(const int index) const
 {
     /*
         * LinkedList nodes are not stored in contiguous memory like C++ arrays,
@@ -235,7 +235,7 @@ Node* LinkedList::get(const int index) const
 
     if (index < 0 || index >= length) return nullptr;
 
-    Node* result = head;
+    Node2* result = head;
     for (int i = 0; i < index; ++i)
     {
         result = result->getNext();
@@ -260,7 +260,7 @@ bool LinkedList::set(const int index, const int value)
         * - false if the index is invalid (out of bounds).
     */
 
-    Node* target = get(index);
+    Node2* target = get(index);
 
     if (target)
     {
@@ -306,8 +306,8 @@ bool LinkedList::insert(const int index, const int value)
     }
 
     // Insert in the middle
-    Node* newNode = new Node(value);
-    Node* prev = get(index - 1);
+    Node2* newNode = new Node2(value);
+    Node2* prev = get(index - 1);
     newNode->setNext(prev->getNext());
     prev->setNext(newNode);
     ++length;
@@ -326,13 +326,13 @@ void LinkedList::reverse()
      * */
 
     // step 1: switch head and tail node pointers
-    Node* temp = head;
+    Node2* temp = head;
     head = tail;
     tail = temp;
 
     // reverse the nodes
-    Node* after = temp->getNext();
-    Node* before = nullptr;
+    Node2* after = temp->getNext();
+    Node2* before = nullptr;
 
     for (int i = 0; i < length; i++)
     {
@@ -343,12 +343,12 @@ void LinkedList::reverse()
     }
 }
 
-Node* LinkedList::findMiddleNode() const
+Node2* LinkedList::findMiddleNode() const
 {
     if (head == nullptr) return nullptr;
 
-    Node* slow = head;
-    Node* fast = head;
+    Node2* slow = head;
+    Node2* fast = head;
 
     while (fast != nullptr && fast->getNext() != nullptr)
     {
@@ -363,8 +363,8 @@ bool LinkedList::hasLoop() const
 {
     if (head == nullptr) return false;
 
-    Node* slow = head;
-    Node* fast = head;
+    Node2* slow = head;
+    Node2* fast = head;
 
     while (fast != nullptr && fast->getNext() != nullptr)
     {
@@ -376,12 +376,12 @@ bool LinkedList::hasLoop() const
 }
 
 // find the Kth node from the end
-Node* LinkedList::findKthFromEnd(int k) const
+Node2* LinkedList::findKthFromEnd(int k) const
 {
     if (k < 1) return nullptr; // Edge case: invalid K
 
-    Node* slow = head;
-    Node* fast = head;
+    Node2* slow = head;
+    Node2* fast = head;
 
     // step 1: Advance 'fast' by k steps
     for (int i = 0; i < k; ++i)
@@ -406,17 +406,17 @@ void LinkedList::removeDuplicates()
 {
     if (head == nullptr) return;
 
-    Node* current = head;
+    Node2* current = head;
 
     while (current != nullptr)
     {
-        Node* runner = current;
+        Node2* runner = current;
         while (runner->getNext() != nullptr)
         {
             if (runner->getNext()->getData() == current->getData())
             {
                 // duplicate found: delete the node
-                Node* duplicate = runner->getNext();
+                Node2* duplicate = runner->getNext();
                 runner->setNext(duplicate->getNext());
                 delete duplicate;
                 --length;
@@ -433,7 +433,7 @@ void LinkedList::removeDuplicates()
 // BinaryToDecimal
 int LinkedList::binaryToDecimal() const
 {
-    Node* current = head;
+    Node2* current = head;
     int num = 0;
 
     while (current != nullptr)
@@ -487,19 +487,19 @@ void LinkedList::partitionList(const int limit)
     if (head == nullptr) return;
 
     // Dummy heads for two new partitions
-    Node* lessHead = new Node(0); // Holds nodes < limit
-    Node* greaterHead = new Node(0); // Holds nodes >= limit
+    Node2* lessHead = new Node2(0); // Holds nodes < limit
+    Node2* greaterHead = new Node2(0); // Holds nodes >= limit
 
     // Tails to append nodes to the above dummy heads
-    Node* lessTail = lessHead;
-    Node* greaterTail = greaterHead;
+    Node2* lessTail = lessHead;
+    Node2* greaterTail = greaterHead;
 
     // Traverse the original list
-    Node* current = head;
+    Node2* current = head;
 
     while (current != nullptr)
     {
-        Node* nextNode = current->getNext(); // Save the next node
+        Node2* nextNode = current->getNext(); // Save the next node
         current->setNext(nullptr); // Detach current node
 
         if (current->getData() < limit)
@@ -544,10 +544,10 @@ void LinkedList::reverseBetween(int m, int n)
 
     if (!head || m == n) return;
 
-    Node* dummy = new Node(0);
+    Node2* dummy = new Node2(0);
     dummy->setNext(head);
 
-    Node* prev = dummy;
+    Node2* prev = dummy;
 
     // Step 1: Move prev to the node before index m
     for (int i = 0; i < m; ++i)
@@ -556,8 +556,8 @@ void LinkedList::reverseBetween(int m, int n)
     }
 
     // Step 2: Reverse sublist from m to n
-    Node* start = prev->getNext(); // node at position m
-    Node* then = start->getNext(); // node at position m + 1
+    Node2* start = prev->getNext(); // node at position m
+    Node2* then = start->getNext(); // node at position m + 1
 
     for (int i = 0; i < n - m; ++i)
     {
@@ -571,7 +571,7 @@ void LinkedList::reverseBetween(int m, int n)
     head = dummy->getNext();
 
     // step 4: update tail pointer
-    Node* temp = head;
+    Node2* temp = head;
     while (temp && temp->getNext()) temp = temp->getNext();
     tail = temp;
 
@@ -595,9 +595,9 @@ void LinkedList::swapPairs()
      *    - This simplifies edge cases when swapping the first pair (i.e., involving the head).
      *    - 'prev' pointer starts at dummy and will help re-link swapped nodes.
      */
-    Node* dummy = new Node(0);
+    Node2* dummy = new Node2(0);
     dummy->setNext(head);
-    Node* prev = dummy;
+    Node2* prev = dummy;
 
     /*
      * 3. Main Loop to Traverse and Swap Pairs:
@@ -612,8 +612,8 @@ void LinkedList::swapPairs()
      */
     while (prev->getNext() && prev->getNext()->getNext())
     {
-        Node* first = prev->getNext();
-        Node* second = first->getNext();
+        Node2* first = prev->getNext();
+        Node2* second = first->getNext();
 
         // Perform the swap by re-linking next pointers
         first->setNext(second->getNext()); // Step a
@@ -634,7 +634,7 @@ void LinkedList::swapPairs()
      * 5. Update tail pointer
      *
      */
-    Node* temp = head;
+    Node2* temp = head;
     while (temp && temp->getNext()) temp = temp->getNext();
     tail = temp;
 
@@ -647,12 +647,12 @@ void LinkedList::swapPairs()
 }
 
 // Accessors and Mutators
-Node* LinkedList::getHead() const { return head; }
-Node* LinkedList::getTail() const { return tail; }
+Node2* LinkedList::getHead() const { return head; }
+Node2* LinkedList::getTail() const { return tail; }
 int LinkedList::getLength() const { return length; }
 
-void LinkedList::setHead(Node* node) { head = node; }
-void LinkedList::setTail(Node* node) { tail = node; }
+void LinkedList::setHead(Node2* node) { head = node; }
+void LinkedList::setTail(Node2* node) { tail = node; }
 void LinkedList::setLength(int len) { length = len; }
 
 void LinkedList::incrementLength() { ++length; }
@@ -670,12 +670,12 @@ LinkedList::LinkedList(const LinkedList& other)
     }
     else
     {
-        head = new Node(other.head->getData());
-        Node* current = head;
-        Node* otherCurrent = other.head->getNext();
+        head = new Node2(other.head->getData());
+        Node2* current = head;
+        Node2* otherCurrent = other.head->getNext();
         while (otherCurrent != nullptr)
         {
-            current->setNext(new Node(otherCurrent->getData()));
+            current->setNext(new Node2(otherCurrent->getData()));
             current = current->getNext();
             otherCurrent = otherCurrent->getNext();
         }
@@ -698,12 +698,12 @@ LinkedList& LinkedList::operator=(const LinkedList& other)
     }
     else
     {
-        head = new Node(other.head->getData());
-        Node* current = head;
-        Node* otherCurrent = other.head->getNext();
+        head = new Node2(other.head->getData());
+        Node2* current = head;
+        Node2* otherCurrent = other.head->getNext();
         while (otherCurrent != nullptr)
         {
-            current->setNext(new Node(otherCurrent->getData()));
+            current->setNext(new Node2(otherCurrent->getData()));
             current = current->getNext();
             otherCurrent = otherCurrent->getNext();
         }
@@ -749,7 +749,7 @@ std::ostream& operator<<(std::ostream& stream, const LinkedList& ll)
     else
     {
         stream << "{";
-        Node* current = ll.getHead();
+        Node2* current = ll.getHead();
         while (current != nullptr)
         {
             stream << current->getData();
@@ -773,7 +773,7 @@ std::istream& operator>>(std::istream& stream, LinkedList& ll)
     int value;
     while (stream >> value)
     {
-        Node* newNode = new Node(value);
+        Node2* newNode = new Node2(value);
         if (ll.getHead() == nullptr)
         {
             ll.setHead(newNode);

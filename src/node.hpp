@@ -2,19 +2,12 @@
 
 class Node {
 public:
-
-    explicit Node(int data);
-
+    int value;
+    Node* next;
+    Node* prev;
+    Node(int value);
     ~Node() = default;
 
+    // accessors
     int getData() const;
-    void setData(int data);
-
-    Node* getNext() const;
-    void setNext(Node* node);
-
-private:
-    int data;
-    Node* next;
-
 };

@@ -144,7 +144,7 @@ TEST_F(MultiNodeLinkedListTest, DeleteNode_MiddleIndex)
 // ------ Get/Set Tests ------
 TEST_F(MultiNodeLinkedListTest, Get_ValidIndex)
 {
-    Node* node = ll->get(1);
+    Node2* node = ll->get(1);
     ASSERT_NE(node, nullptr);
     EXPECT_EQ(node->getData(), 20);
 }
@@ -188,7 +188,7 @@ TEST_F(ComplexLinkedListTest, RemoveDuplicates)
 TEST_F(ComplexLinkedListTest, RemoveDuplicates_RemovesDuplicates)
 {
     ll->removeDuplicates();
-    Node* current = ll->getHead();
+    Node2* current = ll->getHead();
     while (current && current->getNext())
     {
         EXPECT_NE(current->getData(), current->getNext()->getData());
@@ -199,7 +199,7 @@ TEST_F(ComplexLinkedListTest, RemoveDuplicates_RemovesDuplicates)
 // ------ Kth From End Tests ------
 TEST_F(MultiNodeLinkedListTest, FindKthFromEnd_ValidK)
 {
-    Node* node = ll->findKthFromEnd(2);
+    Node2* node = ll->findKthFromEnd(2);
     ASSERT_NE(node, nullptr);
     EXPECT_EQ(node->getData(), 20);
 }
@@ -215,7 +215,7 @@ TEST_F(MultiNodeLinkedListTest, PartitionList)
 {
     ll->partitionList(25);
     // Verify all nodes <25 come before nodes >=25
-    Node* current = ll->getHead();
+    Node2* current = ll->getHead();
     while (current && current->getData() < 25)
     {
         current = current->getNext();
@@ -230,7 +230,7 @@ TEST_F(MultiNodeLinkedListTest, PartitionList)
 // ------ Find Middle Node in an Even Length ListTests ------
 TEST_F(EvenLengthListTest, FindMiddleNode)
 {
-    Node* middle = ll->findMiddleNode();
+    Node2* middle = ll->findMiddleNode();
     ASSERT_NE(middle, nullptr);
     EXPECT_EQ(middle->getData(), 3); // Middle element is 3
 }

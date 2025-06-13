@@ -12,16 +12,24 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(googletest)
 
+add_executable(singly_linkedlist_test linkedlist_test.cpp)
 
-add_executable(linkedlist_test linkedlist_test.cpp)
+add_executable(doubly_linkedlist_test doublylinkedlist_test.cpp)
 
 
-target_link_libraries(linkedlist_test
+target_link_libraries(singly_linkedlist_test
         PRIVATE
         GTest::gtest_main
-        LinkedList-lib)
+        SinglyLinkedList-lib)
+
+
+target_link_libraries(doubly_linkedlist_test
+        PRIVATE
+        GTest::gtest_main
+        DoublyLinkedList-lib)
 
 
 include(GoogleTest)
 
-gtest_discover_tests(linkedlist_test)
+gtest_discover_tests(singly_linkedlist_test)
+gtest_discover_tests(doubly_linkedlist_test)
