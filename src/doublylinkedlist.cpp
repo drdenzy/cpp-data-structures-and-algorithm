@@ -3,27 +3,26 @@
 #include <iostream>
 
 DoublyLinkedList::DoublyLinkedList(int value) {
-  Node* newNode = new Node(value);
-  head = newNode;
-  tail = newNode;
-  length = 1;
+    Node* newNode = new Node(value);
+    head = newNode;
+    tail = newNode;
+    length = 1;
 }
 
 DoublyLinkedList::~DoublyLinkedList() {
-  clear();
+    clear();
 }
 
 void DoublyLinkedList::clear() {
-  Node* current = head;
-  while (current != nullptr) {
-    Node* next = current->next;
-    delete current;
-    current = next;
-  }
-  head = tail = nullptr;
-  length = 0;
+    Node* current = head;
+    while (current != nullptr) {
+        Node* next = current->next;
+        delete current;
+        current = next;
+    }
+    head = tail = nullptr;
+    length = 0;
 }
-
 
 
 int DoublyLinkedList::getLength() const {
@@ -39,10 +38,8 @@ Node* DoublyLinkedList::getTail() const {
 }
 
 void DoublyLinkedList::display() const {
-    Node* current = head;
-    if (current == nullptr) {
-        std::cout << "{}\n";
-    }
+    const Node* current = head;
+
     std::cout << "{";
     while (current) {
         std::cout << current->getData();
@@ -54,7 +51,7 @@ void DoublyLinkedList::display() const {
     std::cout << "}\n";
 }
 
-void DoublyLinkedList::append(int value) {
+void DoublyLinkedList::append(const int value) {
     Node* newNode = new Node(value);
     // empty list
     if (head == nullptr) {
@@ -68,16 +65,48 @@ void DoublyLinkedList::append(int value) {
     ++length;
 }
 
-void DoublyLinkedList::prepend(int value) {
+void DoublyLinkedList::prepend(const int value) {
     Node* newNode = new Node(value);
     if (head == nullptr) {
         head = newNode;
         tail = newNode;
-    }else {
+    } else {
         head->prev = newNode;
         newNode->next = head;
         head = newNode;
     }
     ++length;
+}
 
+void DoublyLinkedList::deleteLast() {
+    if (length == 0) return; // empty list
+
+    Node* temp = tail;
+    if (length == 1) {
+        // single node list
+        head = nullptr;
+        tail = nullptr;
+    } else {
+        // multi-node list
+        tail = tail->prev;
+        tail->next = nullptr;
+    }
+    delete temp;
+    --length;
+}
+
+void DoublyLinkedList::deleteFirst() {
+    if (length == 0) return; // empty list
+    Node* temp = head;
+    if (length == 1) {
+        // single node list
+        head = nullptr;
+        tail = nullptr;
+    } else {
+        // multi-node list
+        head = head->next;
+        head->prev = nullptr;
+    }
+    delete temp;
+    --length;
 }

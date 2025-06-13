@@ -9,6 +9,9 @@ public:
     void display() const;
     void append(int value);
     void prepend(int value);
+    void deleteLast();
+    void deleteFirst();
+
 
     // accessors
     int getLength() const;

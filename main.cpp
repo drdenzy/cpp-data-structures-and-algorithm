@@ -16,4 +16,21 @@ int main() {
     dll->prepend(3);
     dll->display();
     std::cout << "DoublyLL Length: " << dll->getLength() << '\n';
+
+    dll->deleteLast();
+    dll->display();
+    std::cout << "DoublyLL Length: " << dll->getLength() << '\n';
+
+    dll->append(11);
+    dll->append(12);
+    dll->append(13);
+    dll->display();
+    // while (dll->getLength() != 0) {
+    //     dll->deleteFirst();
+    //     dll->display();
+    // }
+    while (dll->getLength() != 0) {
+        dll->deleteLast();
+        dll->display();
+    }
 }
