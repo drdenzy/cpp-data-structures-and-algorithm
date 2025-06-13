@@ -21,7 +21,7 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 
 ### ✅ Singly LinkedList Features Implemented:
 - Insert at head, tail, or index
-- Delete by value or index
+- Delete by value index
 - Reverse list
 - Detect loops
 - Swap node pairs
@@ -31,9 +31,30 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 
 ### ✅ Doubly LinkedList Features Implemented:
 - Insert at head, tail, or index
-- Delete by value or index
+- Delete by index
 - Reverse list
+- etc
 
+
+### 📌 Design Notes
+
+> 🔄 **Why two `Node` class versions?**
+
+This project contains **two versions** of the `Node` class:
+
+* `Node.hpp/cpp`: All members are `public`
+* `Node2.hpp/cpp`: Some members are `private`
+
+The choice impacts how nodes are accessed and manipulated. `Node2` offers stricter encapsulation, which is generally good practice but can introduce more complexity in use—particularly for learners.
+
+To keep the codebase both educational and practical:
+
+* **SinglyLinkedList** uses `Node2` to demonstrate proper encapsulation and accessor methods.
+* **DoublyLinkedList** (and other data structures to follow) will use the simpler `Node` class for improved readability and faster iteration during learning.
+
+This split allows the project to balance clean OOP principles with clarity for learners at different levels.
+
+---
 
 ### 🧪 Unit Test Coverage
 ✔ test cases across typical and edge scenarios  
