@@ -13,6 +13,8 @@ public:
     void deleteFirst();
     Node* get(int index) const;
     bool set(int index, int newValue);
+    bool insertNode(int index, int value);
+    void deleteNode(int index);
 
 
     // accessors
@@ -25,3 +27,4 @@ private:
     Node* tail;
     int length;
 };
+

@@ -139,11 +139,69 @@ Node* DoublyLinkedList::get(const int index) const {
 }
 
 bool DoublyLinkedList::set(int index, int newValue) {
-  // the get method will serve as a helper
+    // the get method will serve as a helper
     Node* target = get(index);
     if (target) {
         target->value = newValue;
         return true;
     }
     return false;
+}
+
+bool DoublyLinkedList::insertNode(int index, int value) {
+    // validate index bounds
+    if (index < 0 || index > length)
+        return false;
+
+    if (index == 0) {
+        prepend(value);
+        return true;
+    }
+
+    if (index == length) {
+        append(value);
+        return true;
+    }
+
+    Node* newNode = new Node(value);
+    Node* before = get(index - 1);
+    Node* after = before->next;
+
+    newNode->prev = before;
+    newNode->next = after;
+    before->next = newNode;
+    after->prev = newNode;
+
+    ++length;
+
+    return true;
+}
+
+void DoublyLinkedList::deleteNode(int index) {
+    if (index < 0 || index >= length) return;
+
+    if (index == 0) return deleteFirst();
+
+    if (index == length - 1) return deleteLast();
+
+    // option 1: beginner-friendly but more verbose
+    // Node* target = get(index);
+    // if (!target) return;
+    // Node* before = target->prev;
+    // Node* after = target->next;
+    //
+    // before->next = after;
+    // after->prev = before;
+    //
+    // delete target;
+    // --length;
+
+    // option 2: Unlink the target node by updating its neighbors
+    Node* target = get(index);
+    if (!target) return;
+
+    target->next->prev = target->prev;
+    target->prev->next = target->next;
+    delete target;
+    --length;
 }

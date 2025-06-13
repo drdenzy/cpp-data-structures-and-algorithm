@@ -46,4 +46,14 @@ int main() {
     //     dll->deleteLast();
     //     dll->display();
     // }
+
+    dll->insertNode(0, 1690);
+    dll->display();
+    dll->insertNode(dll->getLength(), 1999);
+    dll->display();
+    dll->insertNode(dll->getLength()/2, 18880);
+    dll->display();
+
+    dll->deleteNode(dll->getLength()/2);
+    dll->display();
 }

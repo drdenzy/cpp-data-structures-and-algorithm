@@ -11,7 +11,8 @@ private:
 
 public:
     CoutRedirect()
-        : buffer(), old(std::cout.rdbuf(buffer.rdbuf())) {
+        : buffer(),
+          old(std::cout.rdbuf(buffer.rdbuf())) {
     }
 
     ~CoutRedirect() {
@@ -185,7 +186,7 @@ TEST_F(SingleNodeDoublyLinkedListTest, Get_FromSingleNodeDLL) {
     ASSERT_EQ(dll->get(0)->getData(), 10);
 }
 
-TEST_F(MultiNodeDoublyLinkedListTest, Get_FromMultiNodeDLL){
+TEST_F(MultiNodeDoublyLinkedListTest, Get_FromMultiNodeDLL) {
     ASSERT_EQ(dll->get(0)->getData(), 10);
     ASSERT_EQ(dll->get(1)->getData(), 20);
     ASSERT_EQ(dll->get(2)->getData(), 30);
@@ -211,4 +212,101 @@ TEST_F(MultiNodeDoublyLinkedListTest, Set_FromMultiNodeDLL) {
     ASSERT_EQ(dll->set(2, 33), true);
     ASSERT_EQ(dll->get(2)->getData(), 33);
     ASSERT_EQ(dll->set(3, 44), false);
+}
+
+
+// ------- Insert Node -------
+
+TEST_F(EmptyDoublyLinkedListTest, InsertNode_IntoEmptyDLL) {
+    ASSERT_EQ(dll->insertNode(0, 100), true);
+    ASSERT_EQ(dll->getLength(), 1);
+    ASSERT_EQ(dll->getHead()->getData(), 100);
+    ASSERT_EQ(dll->getTail()->getData(), 100);
+}
+
+TEST_F(SingleNodeDoublyLinkedListTest, InsertNode_IntoSingleNodeDLL) {
+    ASSERT_EQ(dll->insertNode(0, 100), true);
+    ASSERT_EQ(dll->getLength(), 2);
+    ASSERT_EQ(dll->getHead()->getData(), 100);
+    ASSERT_EQ(dll->getTail()->getData(), 10);
+}
+
+TEST_F(MultiNodeDoublyLinkedListTest, InsertNode_IntoMultiNodeDLL) {
+    ASSERT_EQ(dll->insertNode(0, 100), true);
+    ASSERT_EQ(dll->insertNode(dll->getLength(), 200), true);
+    ASSERT_EQ(dll->insertNode(dll->getLength()/2, 999), true);
+}
+
+
+// ------- Delete Node -------
+
+TEST_F(EmptyDoublyLinkedListTest, DeleteNode_FromEmptyDLL) {
+    dll->deleteNode(-1); // Invalid negative index
+    dll->deleteNode(0); // Invalid index (empty)
+    dll->deleteNode(1); // Invalid out-of-range index
+    EXPECT_EQ(dll->getLength(), 0);
+    EXPECT_EQ(dll->getHead(), nullptr);
+    EXPECT_EQ(dll->getTail(), nullptr);
+}
+
+TEST_F(SingleNodeDoublyLinkedListTest, DeleteNode_FromSingleNodeDLL) {
+    // Test invalid indices
+    dll->deleteNode(-1);
+    EXPECT_EQ(dll->getLength(), 1);
+    dll->deleteNode(1);
+    EXPECT_EQ(dll->getLength(), 1);
+
+    // Test valid deletion
+    dll->deleteNode(0);
+    EXPECT_EQ(dll->getLength(), 0);
+    EXPECT_EQ(dll->getHead(), nullptr);
+    EXPECT_EQ(dll->getTail(), nullptr);
+}
+
+TEST_F(MultiNodeDoublyLinkedListTest, DeleteNode_FromMultiNodeDLL) {
+    // Test invalid indices
+    dll->deleteNode(-1);
+    EXPECT_EQ(dll->getLength(), 3);
+    dll->deleteNode(3); // Out of bounds
+    EXPECT_EQ(dll->getLength(), 3);
+
+    // Delete head (index 0)
+    dll->deleteNode(0);
+    EXPECT_EQ(dll->getLength(), 2);
+    EXPECT_EQ(dll->getHead()->getData(), 20);
+    EXPECT_EQ(dll->getTail()->getData(), 30);
+    EXPECT_EQ(dll->getHead()->prev, nullptr);
+
+    // Reset list for next test
+    dll->prepend(10);
+
+    // Delete tail (index 2)
+    dll->deleteNode(2);
+    EXPECT_EQ(dll->getLength(), 2);
+    EXPECT_EQ(dll->getHead()->getData(), 10);
+    EXPECT_EQ(dll->getTail()->getData(), 20);
+    EXPECT_EQ(dll->getTail()->next, nullptr);
+
+    // Reset list for next test
+    dll->append(30);
+
+    // Delete middle node (index 1)
+    dll->deleteNode(1);
+    EXPECT_EQ(dll->getLength(), 2);
+    EXPECT_EQ(dll->getHead()->getData(), 10);
+    EXPECT_EQ(dll->getTail()->getData(), 30);
+
+    // Verify pointers are correctly updated
+    EXPECT_EQ(dll->getHead()->next, dll->getTail());
+    EXPECT_EQ(dll->getTail()->prev, dll->getHead());
+
+    // Delete all nodes sequentially
+    dll->deleteNode(0);
+    EXPECT_EQ(dll->getLength(), 1);
+    EXPECT_EQ(dll->getHead()->getData(), 30);
+
+    dll->deleteNode(0);
+    EXPECT_EQ(dll->getLength(), 0);
+    EXPECT_EQ(dll->getHead(), nullptr);
+    EXPECT_EQ(dll->getTail(), nullptr);
 }
