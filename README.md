@@ -17,29 +17,9 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 
 ---
 
-## 🧠 Project Structure
-
-```
-
-├── CMakeLists.txt         # Top-level build configuration
-├── main.cpp               
-├── src/
-│   ├── node.hpp/.cpp        # Node class for singly linked list
-│   └── linkedlist.hpp/.cpp  # Core LinkedList class implementation
-├── tests/
-│   ├── linkedlist_test.cpp  # Google Test unit tests
-│   └── CMakeLists.txt       # Test target + GTest setup
-├── cmake/
-│   └── LLVMCodeCoverage.cmake # Optional: HTML code coverage target
-└── build/                 # (ignored) CMake build directory
-
-````
-
----
-
 ## 🧪 Features & Coverage
 
-### ✅ LinkedList Features Implemented:
+### ✅ Singly LinkedList Features Implemented:
 - Insert at head, tail, or index
 - Delete by value or index
 - Reverse list
@@ -49,8 +29,14 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 - Deep copy and move support
 - Edge-case aware (empty list, invalid indices, etc.)
 
+### ✅ Doubly LinkedList Features Implemented:
+- Insert at head, tail, or index
+- Delete by value or index
+- Reverse list
+
+
 ### 🧪 Unit Test Coverage
-✔ 25+ test cases across typical and edge scenarios  
+✔ test cases across typical and edge scenarios  
 ✔ Google Test framework integration via CMake  
 ✔ Optional: HTML code coverage reports via `llvm-cov` and `llvm-profdata`
 
@@ -68,7 +54,7 @@ cd cpp-data-structures-and-algorithm
 ### 2. Build & Run Tests
 
 ```bash
-cmake -S . -B build -DCODE_COVERAGE=ON
+cmake -DCODE_COVERAGE=ON -B build -S .  
 cmake --build build
 cd build
 ctest --output-on-failure
@@ -77,8 +63,9 @@ ctest --output-on-failure
 ### 3. (Optional) Generate Code Coverage Report (macOS with LLVM tools)
 
 ```bash
-make -C build llvm_coverage
-open build/coverage-report/index.html
+make -C build llvm_coverage1
+make -C build llvm_coverage2
+open build/coverage-report-*/index.html
 ```
 
 ---
