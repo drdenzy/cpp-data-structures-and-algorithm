@@ -33,6 +33,7 @@
 
 # custom
 build
+src/build
 tests/build
 cmake-build-debug
 cmake/CodeCoverage.cmake

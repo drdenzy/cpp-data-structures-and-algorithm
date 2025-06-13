@@ -40,17 +40,14 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 
 > 🔄 **Why two `Node` class versions?**
 
-This project contains **two versions** of the `Node` class:
-
-* `Node.hpp/cpp`: All members are `public`
-* `Node2.hpp/cpp`: Some members are `private`
-
-The choice impacts how nodes are accessed and manipulated. `Node2` offers stricter encapsulation, which is generally good practice but can introduce more complexity in use—particularly for learners.
+This project contains **two versions** of the `Node` class. The choice impacts how nodes are accessed and manipulated. 
 
 To keep the codebase both educational and practical:
 
-* **SinglyLinkedList** uses `Node2` to demonstrate proper encapsulation and accessor methods.
-* **DoublyLinkedList** (and other data structures to follow) will use the simpler `Node` class for improved readability and faster iteration during learning.
+* **SinglyLinkedList** uses a `Node` class in which some members are `private` to demonstrate proper encapsulation and accessor methods. 
+This offers stricter encapsulation, which is generally good practice but can introduce more complexity in use—particularly for learners.
+
+* **DoublyLinkedList** (and other data structures to follow) will use the simpler `Node` class that has all members as public for improved readability and faster iteration during learning.
 
 This split allows the project to balance clean OOP principles with clarity for learners at different levels.
 

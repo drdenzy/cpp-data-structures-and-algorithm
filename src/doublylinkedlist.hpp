@@ -1,5 +1,16 @@
 #pragma once
-#include "node.hpp"
+
+class DNode {
+public:
+    int value;
+    DNode* next;
+    DNode* prev;
+    DNode(int value);
+    ~DNode() = default;
+
+    // accessors
+    int getData() const;
+};
 
 class DoublyLinkedList {
 public:
@@ -11,7 +22,7 @@ public:
     void prepend(int value);
     void deleteLast();
     void deleteFirst();
-    Node* get(int index) const;
+    DNode* get(int index) const;
     bool set(int index, int newValue);
     bool insertNode(int index, int value);
     void deleteNode(int index);
@@ -19,12 +30,11 @@ public:
 
     // accessors
     int getLength() const;
-    Node* getHead() const;
-    Node* getTail() const;
+    DNode* getHead() const;
+    DNode* getTail() const;
 
 private:
-    Node* head;
-    Node* tail;
+    DNode* head;
+    DNode* tail;
     int length;
 };
-

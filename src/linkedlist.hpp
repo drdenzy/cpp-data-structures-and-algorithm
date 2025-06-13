@@ -1,14 +1,29 @@
 #pragma once
 
-#include "node2.hpp"
 #include <istream>
-#include <ostream>
 
 
-class LinkedList
-{
+class Node {
 public:
-    LinkedList(int value);
+    explicit Node(int data);
+
+    ~Node() = default;
+
+    int getData() const;
+    void setData(int data);
+
+    Node* getNext() const;
+    void setNext(Node* node);
+
+private:
+    int data;
+    Node* next;
+};
+
+
+class LinkedList {
+public:
+    explicit LinkedList(int value);
 
     ~LinkedList();
 
@@ -31,7 +46,7 @@ public:
 
     void prepend(const int value);
 
-    Node2* get(const int index) const;
+    Node* get(const int index) const;
 
     bool set(const int index, const int value);
 
@@ -39,12 +54,12 @@ public:
 
     void reverse();
 
-    Node2* findMiddleNode() const;
+    Node* findMiddleNode() const;
 
     // Floyd's cycle-finding algorithm (aka "tortoise and the hare" algorithm)
     bool hasLoop() const;
 
-    Node2* findKthFromEnd(int k) const;
+    Node* findKthFromEnd(int k) const;
 
     void removeDuplicates();
 
@@ -57,13 +72,13 @@ public:
     void swapPairs();
 
     // 👀 Accessors
-    Node2* getHead() const;
-    Node2* getTail() const;
+    Node* getHead() const;
+    Node* getTail() const;
     int getLength() const;
 
     // 🔧 Mutators
-    void setHead(Node2* node);
-    void setTail(Node2* node);
+    void setHead(Node* node);
+    void setTail(Node* node);
     void setLength(int len);
 
     // Optional convenience
@@ -75,8 +90,8 @@ public:
     friend std::istream& operator>>(std::istream& stream, const LinkedList& ll);
 
 private:
-    Node2* head;
-    Node2* tail;
+    Node* head;
+    Node* tail;
     int length;
 };
 

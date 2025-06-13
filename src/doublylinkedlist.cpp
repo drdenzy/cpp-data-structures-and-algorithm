@@ -2,8 +2,19 @@
 
 #include <iostream>
 
+DNode::DNode(int value)
+    : value{value},
+      next{nullptr},
+      prev{nullptr} {
+};
+
+
+int DNode::getData() const {
+    return this->value;
+}
+
 DoublyLinkedList::DoublyLinkedList(int value) {
-    Node* newNode = new Node(value);
+    DNode* newNode = new DNode(value);
     head = newNode;
     tail = newNode;
     length = 1;
@@ -14,9 +25,9 @@ DoublyLinkedList::~DoublyLinkedList() {
 }
 
 void DoublyLinkedList::clear() {
-    Node* current = head;
+    DNode* current = head;
     while (current != nullptr) {
-        Node* next = current->next;
+        DNode* next = current->next;
         delete current;
         current = next;
     }
@@ -29,16 +40,16 @@ int DoublyLinkedList::getLength() const {
     return length;
 }
 
-Node* DoublyLinkedList::getHead() const {
+DNode* DoublyLinkedList::getHead() const {
     return head;
 }
 
-Node* DoublyLinkedList::getTail() const {
+DNode* DoublyLinkedList::getTail() const {
     return tail;
 }
 
 void DoublyLinkedList::display() const {
-    const Node* current = head;
+    const DNode* current = head;
 
     std::cout << "{";
     while (current) {
@@ -52,7 +63,7 @@ void DoublyLinkedList::display() const {
 }
 
 void DoublyLinkedList::append(const int value) {
-    Node* newNode = new Node(value);
+    DNode* newNode = new DNode(value);
     // empty list
     if (head == nullptr) {
         head = newNode;
@@ -66,7 +77,7 @@ void DoublyLinkedList::append(const int value) {
 }
 
 void DoublyLinkedList::prepend(const int value) {
-    Node* newNode = new Node(value);
+    DNode* newNode = new DNode(value);
     if (head == nullptr) {
         head = newNode;
         tail = newNode;
@@ -82,7 +93,7 @@ void DoublyLinkedList::deleteLast() {
     if (length == 0)
         return; // empty list
 
-    Node* temp = tail;
+    DNode* temp = tail;
     if (length == 1) {
         // single node list
         head = nullptr;
@@ -99,7 +110,7 @@ void DoublyLinkedList::deleteLast() {
 void DoublyLinkedList::deleteFirst() {
     if (length == 0)
         return; // empty list
-    Node* temp = head;
+    DNode* temp = head;
     if (length == 1) {
         // single node list
         head = nullptr;
@@ -113,7 +124,7 @@ void DoublyLinkedList::deleteFirst() {
     --length;
 }
 
-Node* DoublyLinkedList::get(const int index) const {
+DNode* DoublyLinkedList::get(const int index) const {
     // validate index bounds
     if (index < 0 || index >= length)
         return nullptr;
@@ -124,7 +135,7 @@ Node* DoublyLinkedList::get(const int index) const {
         * - If it's in the second half, start from the tail.
         * This reduces traversal time from O(n) to O(n/2) in the average case.
     */
-    Node* target = head;
+    DNode* target = head;
     if (index < length / 2) {
         for (int i = 0; i < index; ++i) {
             target = target->next;
@@ -140,7 +151,7 @@ Node* DoublyLinkedList::get(const int index) const {
 
 bool DoublyLinkedList::set(int index, int newValue) {
     // the get method will serve as a helper
-    Node* target = get(index);
+    DNode* target = get(index);
     if (target) {
         target->value = newValue;
         return true;
@@ -163,9 +174,9 @@ bool DoublyLinkedList::insertNode(int index, int value) {
         return true;
     }
 
-    Node* newNode = new Node(value);
-    Node* before = get(index - 1);
-    Node* after = before->next;
+    DNode* newNode = new DNode(value);
+    DNode* before = get(index - 1);
+    DNode* after = before->next;
 
     newNode->prev = before;
     newNode->next = after;
@@ -178,17 +189,20 @@ bool DoublyLinkedList::insertNode(int index, int value) {
 }
 
 void DoublyLinkedList::deleteNode(int index) {
-    if (index < 0 || index >= length) return;
+    if (index < 0 || index >= length)
+        return;
 
-    if (index == 0) return deleteFirst();
+    if (index == 0)
+        return deleteFirst();
 
-    if (index == length - 1) return deleteLast();
+    if (index == length - 1)
+        return deleteLast();
 
     // option 1: beginner-friendly but more verbose
-    // Node* target = get(index);
+    // DNode* target = get(index);
     // if (!target) return;
-    // Node* before = target->prev;
-    // Node* after = target->next;
+    // DNode* before = target->prev;
+    // DNode* after = target->next;
     //
     // before->next = after;
     // after->prev = before;
@@ -197,8 +211,9 @@ void DoublyLinkedList::deleteNode(int index) {
     // --length;
 
     // option 2: Unlink the target node by updating its neighbors
-    Node* target = get(index);
-    if (!target) return;
+    DNode* target = get(index);
+    if (!target)
+        return;
 
     target->next->prev = target->prev;
     target->prev->next = target->next;

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 project(
         cppDataStructuresAlgorithms
         VERSION 1.0.0
-        DESCRIPTION "C++ Classes"
+        DESCRIPTION "Data Structures and Algorithms using C++"
 )
 
 set(CMAKE_CXX_STANDARD 20)
