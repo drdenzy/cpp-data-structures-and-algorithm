@@ -19,7 +19,7 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 
 ## 🧪 Features & Coverage
 
-### ✅ Singly LinkedList Features Implemented:
+### 🔗➡️ Singly LinkedList Features Implemented:
 - Insert at head, tail, or index
 - Delete by value index
 - Reverse list
@@ -29,11 +29,26 @@ Whether you’re a student, a self-taught developer, or preparing for technical 
 - Deep copy and move support
 - Edge-case aware (empty list, invalid indices, etc.)
 
-### ✅ Doubly LinkedList Features Implemented:
+### 🔗↔️ Doubly LinkedList Features Implemented:
 - Insert at head, tail, or index
 - Delete by index
 - Reverse list
 - etc
+
+### 📚⬆️ Stack Features Implemented:
+- push
+- pop
+- peek
+- clear
+- height
+
+
+### 🧍‍♂️🧍‍♀️➡️ Queue Features Implemented:
+- enQueue
+- deQueue
+- peek
+- size
+- clear
 
 
 ### 📌 Design Notes
