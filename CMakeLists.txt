@@ -33,7 +33,7 @@ add_subdirectory(tests)
 add_executable(dsApp main.cpp)
 
 target_compile_options(dsApp PRIVATE -Wall -Wextra -pedantic -Werror)
-target_link_libraries(dsApp PRIVATE SinglyLinkedList-lib DoublyLinkedList-lib)
+target_link_libraries(dsApp PRIVATE SinglyLinkedList-lib DoublyLinkedList-lib Stack-lib)
 
 if(CODE_COVERAGE)
     include(LLVMCodeCoverage)
@@ -46,6 +46,11 @@ if(CODE_COVERAGE)
     add_llvm_coverage_target(llvm_coverage2
             ${CMAKE_BINARY_DIR}/bin/doubly_linkedlist_test
             coverage-report-doubly
+    )
+
+    add_llvm_coverage_target(llvm_coverage3
+            ${CMAKE_BINARY_DIR}/bin/stack_test
+            coverage-report-stack
     )
 endif()
 

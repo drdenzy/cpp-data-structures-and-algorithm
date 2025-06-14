@@ -36,21 +36,21 @@ public:
     LinkedList& operator=(LinkedList&& other) noexcept; // Move assignment
 
     // 🚀 LinkedList APIs
-    void append(const int value);
+    void append(int value);
 
     void deleteLast();
 
     void deleteFirst();
 
-    void deleteNode(const int index);
+    void deleteNode(int index);
 
-    void prepend(const int value);
+    void prepend(int value);
 
-    Node* get(const int index) const;
+    Node* get(int index) const;
 
-    bool set(const int index, const int value);
+    bool set(int index, int value);
 
-    bool insert(const int index, const int value);
+    bool insert(int index, int value);
 
     void reverse();
 
@@ -65,9 +65,9 @@ public:
 
     int binaryToDecimal() const;
 
-    void partitionList(const int limit);
+    void partitionList(int limit);
 
-    void reverseBetween(const int m, const int n);
+    void reverseBetween(int m, int n);
 
     void swapPairs();
 

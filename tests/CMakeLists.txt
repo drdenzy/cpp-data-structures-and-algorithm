@@ -16,6 +16,8 @@ add_executable(singly_linkedlist_test linkedlist_test.cpp)
 
 add_executable(doubly_linkedlist_test doublylinkedlist_test.cpp)
 
+add_executable(stack_test stack_test.cpp)
+
 
 target_link_libraries(singly_linkedlist_test
         PRIVATE
@@ -28,8 +30,14 @@ target_link_libraries(doubly_linkedlist_test
         GTest::gtest_main
         DoublyLinkedList-lib)
 
+target_link_libraries(stack_test
+        PRIVATE
+        GTest::gtest_main
+        Stack-lib)
+
 
 include(GoogleTest)
 
 gtest_discover_tests(singly_linkedlist_test)
 gtest_discover_tests(doubly_linkedlist_test)
+gtest_discover_tests(stack_test)

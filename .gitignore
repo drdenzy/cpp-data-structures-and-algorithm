@@ -41,6 +41,6 @@ rule-of-five.md
 .cache
 .vscode
 .idea
-
+.clang-tidy
 # code coverage
 default.profraw
