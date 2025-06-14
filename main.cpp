@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include "queue.hpp"
 #include "stack.hpp"
 #include "linkedlist.hpp"
 #include "doublylinkedlist.hpp"
@@ -176,22 +177,37 @@ int main() {
     // dll->deleteNode(dll->getLength() / 2);
     // dll->display();
 
-    // Stack
-    auto* s = new Stack(0);
-    s->display();
-    cout << "Stack Height: " << s->getHeight() << '\n';
-    cout << "Stack Top Element: " << s->getTop() << '\n';
+    // // Stack
+    // auto* s = new Stack(0);
+    // s->display();
+    // cout << "Stack Height: " << s->getHeight() << '\n';
+    // // cout << "Stack Top Element: " << s->getTop() << '\n';
+    //
+    // for (int i=7; i<100; i += 7) {
+    //     s->push(i);
+    //     s->display();
+    // }
+    //
+    // cout << "Peek: " << s->peek() << '\n';
+    //
+    // while (s->getHeight()) {
+    //     cout << "Popped Value: " << s->pop() << '\n';
+    //     s->display();
+    // }
+    // cout << "Peek: " << s->peek() << '\n';
 
-    for (int i=7; i<100; i += 7) {
-        s->push(i);
-        s->display();
+    // Queue
+
+    auto* q = new Queue(0);
+    q->display();
+    // q->enQueue(16);
+    // q->display();
+    for (int i = 10; i < 100; i += 10) {
+        q->enQueue(i);
+        q->display();
     }
-
-    cout << "Peek: " << s->peek() << '\n';
-
-    while (s->getHeight()) {
-        cout << "Popped Value: " << s->pop() << '\n';
-        s->display();
+    while (q->getSize()) {
+        q->deQueue();
+        q->display();
     }
-    cout << "Peek: " << s->peek() << '\n';
 }

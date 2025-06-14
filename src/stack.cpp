@@ -36,9 +36,6 @@ void Stack::display() const {
     std::cout << "}\n";
 }
 
-int Stack::getTop() const {
-    return top->data;
-}
 
 int Stack::getHeight() const {
     return height;

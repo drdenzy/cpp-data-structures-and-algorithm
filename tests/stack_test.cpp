@@ -2,7 +2,6 @@
 #include <gtest/gtest.h>
 #include <climits>
 
-// Test Fixture
 class StackTest : public ::testing::Test {
 protected:
     Stack* stack;
@@ -17,17 +16,17 @@ protected:
 };
 
 TEST_F(StackTest, ConstructorInitializesStackCorrectly) {
-    EXPECT_EQ(stack->getTop(), 42);
+    EXPECT_EQ(stack->peek(), 42);
     EXPECT_EQ(stack->getHeight(), 1);
 }
 
 TEST_F(StackTest, PushIncreasesHeightAndUpdatesTop) {
     stack->push(100);
-    EXPECT_EQ(stack->getTop(), 100);
+    EXPECT_EQ(stack->peek(), 100);
     EXPECT_EQ(stack->getHeight(), 2);
 
     stack->push(200);
-    EXPECT_EQ(stack->getTop(), 200);
+    EXPECT_EQ(stack->peek(), 200);
     EXPECT_EQ(stack->getHeight(), 3);
 }
 
@@ -36,7 +35,7 @@ TEST_F(StackTest, PopReturnsTopAndDecreasesHeight) {
     int popped = stack->pop();
     EXPECT_EQ(popped, 999);
     EXPECT_EQ(stack->getHeight(), 1);
-    EXPECT_EQ(stack->getTop(), 42);
+    EXPECT_EQ(stack->peek(), 42);
 }
 
 TEST_F(StackTest, PopUntilEmptyThenReturnsSentinel) {
@@ -70,17 +69,17 @@ TEST_F(StackTest, ComplexPushPopSequenceMaintainsCorrectState) {
 
     EXPECT_EQ(stack->pop(), 3);
     EXPECT_EQ(stack->pop(), 2);
-    EXPECT_EQ(stack->getTop(), 1);
+    EXPECT_EQ(stack->peek(), 1);
     EXPECT_EQ(stack->getHeight(), 2);
 
     stack->push(99);
-    EXPECT_EQ(stack->getTop(), 99);
+    EXPECT_EQ(stack->peek(), 99);
     EXPECT_EQ(stack->getHeight(), 3);
 }
 
 TEST_F(StackTest, PushPopWithINTMINValue) {
     stack->push(INT_MIN);
-    EXPECT_EQ(stack->getTop(), INT_MIN);
+    EXPECT_EQ(stack->peek(), INT_MIN);
     EXPECT_EQ(stack->peek(), INT_MIN);
     EXPECT_EQ(stack->pop(), INT_MIN); // must distinguish between actual value and sentinel
     EXPECT_EQ(stack->getHeight(), 1);

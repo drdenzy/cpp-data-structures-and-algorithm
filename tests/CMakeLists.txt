@@ -18,6 +18,8 @@ add_executable(doubly_linkedlist_test doublylinkedlist_test.cpp)
 
 add_executable(stack_test stack_test.cpp)
 
+add_executable(queue_test queue_test.cpp)
+
 
 target_link_libraries(singly_linkedlist_test
         PRIVATE
@@ -35,9 +37,15 @@ target_link_libraries(stack_test
         GTest::gtest_main
         Stack-lib)
 
+target_link_libraries(queue_test
+        PRIVATE
+        GTest::gtest_main
+        Queue-lib)
+
 
 include(GoogleTest)
 
 gtest_discover_tests(singly_linkedlist_test)
 gtest_discover_tests(doubly_linkedlist_test)
 gtest_discover_tests(stack_test)
+gtest_discover_tests(queue_test)
