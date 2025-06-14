@@ -5,7 +5,7 @@ public:
     QNode* next;
     int data;
 
-    QNode(int data)
+    explicit QNode(const int data)
         : next{nullptr},
           data{data} {
     };

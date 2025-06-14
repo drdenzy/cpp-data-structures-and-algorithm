@@ -16,12 +16,19 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 
 
 option(CODE_COVERAGE "Enable LLVM code coverage reporting" ON)
+option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 
 if (CODE_COVERAGE)
     message(STATUS "Compiling with LLVM coverage instrumentation")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-instr-generate -fcoverage-mapping")
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-instr-generate")
 endif ()
+
+if(ENABLE_ASAN)
+    message(STATUS "Building with AddressSanitizer enabled")
+    add_compile_options(-fsanitize=address -fno-omit-frame-pointer)
+    add_link_options(-fsanitize=address)
+endif()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 

@@ -54,11 +54,18 @@ void Queue::enQueue(int value) {
 }
 
 int Queue::deQueue() {
-    if (size == 0) return INT_MIN;
+    if (size == 0)
+        return INT_MIN;
 
     QNode* temp = first;
     const int dequeuedValue = first->data;
-    first = first->next;
+
+    if (size == 1) {
+        first = last = nullptr;
+    } else {
+        first = first->next;
+    }
+
     delete temp;
     --size;
 
@@ -70,7 +77,8 @@ int Queue::getSize() const {
 }
 
 int Queue::peek() const {
-    if (size == 0) return INT_MIN;
+    if (size == 0)
+        return INT_MIN;
 
     return first->data;
 }

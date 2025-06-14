@@ -75,6 +75,25 @@ This split allows the project to balance clean OOP principles with clarity for l
 
 ---
 
+
+## ✅ Memory Safety (ASan)
+
+🧼 **Address Sanitizer Checked — No Memory Leaks Detected**
+
+All implemented data structures and unit tests have been validated using **Address Sanitizer (ASan)** with Clang/LLVM. 
+The build and test suite show **no memory leaks, use-after-free, or heap corruption** under current test coverage.
+
+To manually run ASan checks:
+
+```bash
+cmake -B build -S . -DCODE_COVERAGE=ON -DENABLE_ASAN=ON
+cmake --build build
+cd build
+ctest --output-on-failure
+```
+
+---
+
 ## 🚀 Getting Started
 
 ### 1. Clone the Repository
@@ -115,6 +134,13 @@ open build/coverage-report-*/index.html
 
 ---
 
+## ⭐ Support This Project
+
+If you find this project useful or educational, please consider leaving a **⭐ star** on the repo! 
+It helps others discover the project and keeps the motivation going 🙌
+
+---
+
 ## 📖 License
 
 MIT License — free to use, modify, and share.
@@ -132,7 +158,7 @@ MIT License — free to use, modify, and share.
 ## ✍️ Author
 
 I am Passionate about making C++, Go, Rust, Elixir, Python and systems programming easier to learn.
-Feel free to connect on  [LinkedIn](https://www.linkedin.com/in/dr-dennis-akpenyi/).
+Feel free to connect on  [LinkedIn](https://www.linkedin.com/in/dr-dennis-akpenyi/). 
 
 ---
 
